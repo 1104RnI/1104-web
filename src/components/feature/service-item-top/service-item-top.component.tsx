@@ -63,7 +63,7 @@ const ServiceItemTop = forwardRef<HTMLDivElement, ServiceItemTopProps>(
 							</div>
 						) : null}
 						<h1 id="service-item-name">{item.name}</h1>
-						<span id="service-item-subheading">{item.plan} PLAN</span>
+						<span id="service-item-subheading">{item.plan}</span>
 					</div>
 					<Card
 						className="service-item-card"

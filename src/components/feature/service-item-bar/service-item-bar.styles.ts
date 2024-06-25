@@ -19,7 +19,8 @@ export const ServiceItemBarContainer = styled(SectionContainer)`
 
 	width: ${({ theme }) => theme.layout.container.width};
 
-	background-color: ${({ theme }) => hexToRgba('#000000', 0.75)};
+	background-color: ${({ theme }) =>
+		hexToRgba(getColour(theme, 'neutral', 'primary', 'active'), 0.75)};
 	backdrop-filter: blur(1.5rem);
 	-webkit-backdrop-filter: blur(1.5rem);
 

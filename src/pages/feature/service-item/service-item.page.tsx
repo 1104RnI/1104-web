@@ -19,7 +19,13 @@ import {
 import ServiceItemBar from '../../../components/feature/service-item-bar/service-item-bar.component'
 import ServiceItemTop from '../../../components/feature/service-item-top/service-item-top.component'
 import ServiceItemDetails from '../../../components/feature/service-item-details/service-item-details.component'
+import FrequentQuestions from '../../../components/feature/frequent-questions/frequent-questions.component'
 import ServiceItemNotes from '../../../components/feature/service-item-notes/service-item-notes.component'
+
+import serviceDetail_1 from '../../../assets/img/data-solution/01.webp'
+import serviceDetail_2 from '../../../assets/img/data-solution/02.webp'
+import serviceDetail_3 from '../../../assets/img/data-solution/03.webp'
+import serviceDetail_4 from '../../../assets/img/data-solution/04.webp'
 
 export default function ServiceItem() {
 	const { id } = useParams<{ id: string }>()
@@ -101,6 +107,34 @@ export default function ServiceItem() {
 			<ServiceItemBar item={item} showBar={showBar} />
 			<ServiceItemTop item={item} ref={refCallback} />
 			{/* <ServiceItemDetails detailsImgUrls={item.details ? item.details : []} /> */}
+			<div id="service-item-details-container">
+				<hr id="service-item-details-vertical-line" />
+				<div id="service-item-details-title-container">
+					<span id="service-item-details-caption">SERVICE DETAILS</span>
+					<h1 id="service-item-details-heading">서비스 상세보기</h1>
+				</div>
+				<img
+					className="service-item-details-img"
+					src={serviceDetail_1}
+					alt="service-item-details-img-1"
+				/>
+				<img
+					className="service-item-details-img"
+					src={serviceDetail_2}
+					alt="service-item-details-img-2"
+				/>
+				<img
+					className="service-item-details-img"
+					src={serviceDetail_3}
+					alt="service-item-details-img-3"
+				/>
+				{/* <img
+					className="service-item-details-img"
+					src={serviceDetail_4}
+					alt="service-item-details-img-4"
+				/> */}
+			</div>
+			<FrequentQuestions />
 			<ServiceItemNotes item={item} />
 		</ServiceItemContainer>
 	)
