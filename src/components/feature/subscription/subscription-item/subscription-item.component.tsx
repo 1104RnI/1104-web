@@ -18,7 +18,17 @@ import Button from '../../../global/button/button.component'
 
 export default function SubscriptionItem(props: SubscriptionItemProps) {
 	const { item, hierarchy } = props
-	const { plan, id, name, tag, summary, overview, price, priceCaption } = item
+	const {
+		thumbnailImg,
+		plan,
+		id,
+		name,
+		tag,
+		summary,
+		overview,
+		price,
+		priceCaption,
+	} = item
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { userId } = useAuthDataStore((state) => state.loginUser)
@@ -27,29 +37,23 @@ export default function SubscriptionItem(props: SubscriptionItemProps) {
 	const navigate = useNavigateWithScroll()
 
 	const handleSubscribe = (e: MouseEvent<HTMLButtonElement>) => {
-		// HACK: D2C에서 5010 매매 전략 구매 구현 전까지 크몽으로 리디렉션
-		if (hierarchy === 'primary') {
-			window.open(
-				'https://kmong.com/gig/455172',
-				'_blank',
-				'noopener,noreferrer',
-			)
+		if (userId) {
+			// TODO: updateCheckoutItem 유지할 필요 있는지 체크 필요
+			updateCheckoutItem('id', id)
+			navigate(`${ROUTES.CHECKOUT}?id=${id}&name=${name}&plan=${plan}`)
 		} else {
-			if (userId) {
-				// TODO: updateCheckoutItem 유지할 필요 있는지 체크 필요
-				updateCheckoutItem('id', id)
-				navigate(`${ROUTES.CHECKOUT}?id=${id}&name=${name}&plan=${plan}`)
-			} else {
-				navigate(ROUTES.LOGIN, { routeState: 'signup' })
-				updateToastMessage('회원가입 및 로그인이 필요합니다.')
-			}
+			navigate(ROUTES.LOGIN, { routeState: 'signup' })
+			updateToastMessage('회원가입 및 로그인이 필요합니다.')
 		}
 	}
-	const handleTryFree = (e: MouseEvent<HTMLButtonElement>) =>
-		navigate(ROUTES.FREE_TRIAL)
 
 	return (
-		<SubscriptionItemContainer $deviceType={deviceType} $hierarchy={hierarchy}>
+		<SubscriptionItemContainer
+			$deviceType={deviceType}
+			$hierarchy={hierarchy}
+			$imageUrl={thumbnailImg}
+		>
+			{deviceType !== 'mobile' ? <div id="item-image" /> : null}
 			<div id="item-contents-container">
 				<div id="plan-text-container">
 					<span id="plan-text">{plan}</span>
@@ -93,22 +97,23 @@ export default function SubscriptionItem(props: SubscriptionItemProps) {
 						))}
 					</div>
 				</div>
-			</div>
-
-			<div id="button-container">
-				<Button
-					accessibleName="button-container"
-					text={price !== 0 ? '지금 구매하기 →' : '무료 체험하기 →'}
-					appearance={hierarchy === 'primary' ? 'accent' : 'neutral'}
-					hierarchy={hierarchy}
-					stroke={hierarchy === 'primary' ? 'filled' : 'outlined'}
-					// stroke="filled"
-					shape="rounding"
-					handleClick={price !== 0 ? handleSubscribe : handleTryFree}
-				/>
-				<span id="caption">
-					{price !== 0 ? '구매 후 7일 이내 환불 가능' : '1:1 무료 상담 후 제공'}
-				</span>
+				<div id="button-container">
+					<Button
+						accessibleName="button-container"
+						text={price !== 0 ? '지금 구매하기 →' : '무료 체험하기 →'}
+						appearance={hierarchy === 'primary' ? 'accent' : 'neutral'}
+						hierarchy={hierarchy}
+						stroke={hierarchy === 'primary' ? 'filled' : 'outlined'}
+						// stroke="filled"
+						shape="rounding"
+						handleClick={handleSubscribe}
+					/>
+					<span id="caption">
+						{price !== 0
+							? '구매 후 7일 이내 환불 가능'
+							: '1:1 무료 상담 후 제공'}
+					</span>
+				</div>
 			</div>
 		</SubscriptionItemContainer>
 	)

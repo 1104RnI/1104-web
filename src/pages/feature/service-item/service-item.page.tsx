@@ -94,13 +94,13 @@ export default function ServiceItem() {
 	}
 	return (
 		<ServiceItemContainer $deviceType={deviceType}>
-			<Helmet>
+			{/* <Helmet>
 				<meta name="theme-color" content="#000000" />
-			</Helmet>
-			<ServiceItemDetialsGlobalStyle />
+			</Helmet> */}
+			{/* <ServiceItemDetialsGlobalStyle /> */}
 			<ServiceItemBar item={item} showBar={showBar} />
 			<ServiceItemTop item={item} ref={refCallback} />
-			<ServiceItemDetails detailsImgUrls={item.details ? item.details : []} />
+			{/* <ServiceItemDetails detailsImgUrls={item.details ? item.details : []} /> */}
 			<ServiceItemNotes item={item} />
 		</ServiceItemContainer>
 	)

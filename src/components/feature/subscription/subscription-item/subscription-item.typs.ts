@@ -11,4 +11,5 @@ export type SubscriptionItemProps = {
 export type SubscriptionItemContainerProps = {
 	$deviceType: DeviceType
 	$hierarchy: ItemHierarchy
+	$imageUrl: string
 }

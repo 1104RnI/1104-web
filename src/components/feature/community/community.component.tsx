@@ -1,7 +1,9 @@
 import { MouseEvent } from 'react'
+import { ROUTES } from '../../../routes/routes'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useHomeContentsStore } from '../../../store/contents/homeContentsStore'
+import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
 import { CommunityContainer } from './community.styles'
 
@@ -13,13 +15,10 @@ export default function Community() {
 	const { caption, heading, body } = useHomeContentsStore(
 		(state) => state.community.text,
 	)
+	const navigate = useNavigateWithScroll()
 
-	const handleJoinCommunity = (e: MouseEvent<HTMLButtonElement>) =>
-		window.open(
-			'https://t.me/+wihj13Yb06U3YWM1',
-			'_blank',
-			'noopener,noreferrer',
-		)
+	const handleFreeTrial = (e: MouseEvent<HTMLButtonElement>) =>
+		navigate(ROUTES.FREE_TRIAL)
 
 	return (
 		<CommunityContainer $deviceType={deviceType} $imageUrl={image}>
@@ -39,8 +38,8 @@ export default function Community() {
 					hierarchy="primary"
 					stroke="filled"
 					shape="rounding"
-					text="JOIN TELEGRAM"
-					handleClick={handleJoinCommunity}
+					text="1:1 상담받고 무료 체험하기 "
+					handleClick={handleFreeTrial}
 				/>
 			</div>
 		</CommunityContainer>

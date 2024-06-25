@@ -72,8 +72,9 @@ export const useAboutUsContentsStore = create<AboutUsContentsState>((set) => ({
 		image: heroImage,
 		text: {
 			category: 'ABOUT US',
-			heading: 'We Revolutionise Crypto Market & Trading Industry',
-			subheading: '우리는 암호화폐 시장과 트레이딩 산업에서 혁신하고 있습니다.',
+			heading: 'We Revolutionise Industry With Data & Technoloy',
+			subheading:
+				'우리는 기술과 데이터로 다양한 산업 시장들을 혁신하고 있습니다.',
 			body: {
 				heading:
 					'1104 R&I는 교육과 IT 기술을 접목하여 투자 시장에 혁신을 가져오는 것을 목표로 하는 기업입니다. 우리는 각 분야의 전문가들과 협력하여 투자 시장의 모든 것을 총망라한 5010 매매 전략을 개발하여 보급하였고, 이제는 더 높은 곳을 향해 나아가고 있습니다.',

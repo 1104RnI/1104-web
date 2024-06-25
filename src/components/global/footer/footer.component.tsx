@@ -11,7 +11,7 @@ import TermsModal from '../terms-modal/terms-modal.component'
 
 export default function Footer() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
-	const { logoUrl, simpleDisclaimer } = useFooterContentsStore()
+	const { logoUrl } = useFooterContentsStore()
 	const {
 		name,
 		ceo,
@@ -87,9 +87,6 @@ export default function Footer() {
 					/>
 				</div>
 				<div id="disclaimer-container">
-					{simpleDisclaimer.map((item, index) => (
-						<p key={index}>{item}</p>
-					))}
 					<div id="copyright-text">
 						<span>© Copyright TEAM 5010.</span>All rights Reserved
 					</div>

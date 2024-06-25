@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 
 import backgroundImage from '../../assets/img/home-about-image.webp'
-import mockupImage from '../../assets/img/home-mockup-image.webp'
+// import mockupImage from '../../assets/img/home-mockup-image.webp'
 import serviceImage1 from '../../assets/img/service-image-1.webp'
 import serviceImage2 from '../../assets/img/service-image-2.webp'
 import serviceImage3 from '../../assets/img/service-image-3.webp'
@@ -39,7 +39,6 @@ export interface HomeContentsState {
 	home: {
 		image: {
 			backgroundImage: string
-			mockupImage: string
 		}
 		text: {
 			display: string
@@ -63,7 +62,6 @@ export interface HomeContentsState {
 			caption: string
 			heading: string
 			body: string
-			buttonText: string
 		}[]
 	}
 	achievement: {
@@ -92,34 +90,33 @@ export const useHomeContentsStore = create<HomeContentsState>((set) => ({
 	home: {
 		image: {
 			backgroundImage: backgroundImage,
-			mockupImage: mockupImage,
 		},
 		text: {
-			display: 'Elevate your investing journey',
+			display: 'ELEVATE YOUR BUSINESS JOURNEY',
 			subheading:
-				'금융 전문가와 수학자들이 설계한 최첨단 기술을 통해 여러분의 거래 경험을 향상해 보세요.',
+				'공학자와 수학자들이 설계한 최첨단 데이터 분석 및 시각화 솔루션으로 여러분의 비즈니스를 한 층 더 향상해 보세요.',
 			ctaButtonText: '지금 바로 서비스 이용하기 →',
-			linkText: '1:1 무료 상담받고 5010 전자책 체험판 받아보세요!',
+			linkText: '1:1 상담받고 먼저 무료로 체험해 보세요!',
 		},
 	},
 	about: {
 		text: {
 			heading:
-				'우리는 모든 투자자들이 사용할 수 있는 전략적 투자 시스템을 만들고 있어요.',
-			body: '1104 R&I는 교육과 IT 기술을 접목, 각 분야의 전문가들과 함께 투자 시장의 모든 것을 총망라한 5010 매매 전략을 개발하고 보급했어요. 나아가 1104 R&I는 최신 기술과 응용 수학을 통해 획기적인 계량적 투자 시스템을 만들고자 노력하고 있어요.',
+				'우리는 모든 산업 분야에서 사용할 수 있는 데이터 분석 및 시각화 시스템을 만들고 있어요.',
+			body: '1104 R&I는 각 분야의 전문가들과 함께 금융 서비스부터 운송, 물류, 여행 서비스 등의 다양한 산업 분야에서 사용할 수 있는 데이터 분석 및 시각화 기술을 제공하고 있어요. 나아가 1104 R&I는 최신 기술과 응용 수학의 접목을 통해 이미 다가온 데이터 시대 속, 획기적인 토탈 데이터 솔루션을 만들고자 노력하고 있어요.',
 			caption: '2023. 3. ~ 현재까지',
 		},
 		items: [
 			{
-				subheading: '5010 매매 전략을 경험한 투자자 수',
+				subheading: '함께한 고객들',
 				heading: '1,274+',
 			},
 			{
-				subheading: '5010 매매 전략의 R&D 기간',
+				subheading: 'R&D 기간',
 				heading: '4년+',
 			},
 			{
-				subheading: '5010 매매 전략 누적 연구 투자액',
+				subheading: '누적 연구 투자액',
 				heading: '5억 원+',
 			},
 		],
@@ -129,26 +126,23 @@ export const useHomeContentsStore = create<HomeContentsState>((set) => ({
 			{
 				imgUrl: serviceImage1,
 				id: 0,
-				caption: '5010 매매 전략',
-				heading: '절대 지지 않는 방법이 계속해서 이기는 방법이다.',
-				body: '쉽고 명확하고 과학적인 방법으로. 5010 매매 전략은 투자 시장의 모든 것을 총망라한, 단순 기법이 아닌 전략으로서의 투자 교육입니다.',
-				buttonText: '5010 매매 전략 자세히 보기 →',
+				caption: 'DATA ANALYSIS',
+				heading: '빅데이터 수집 및 분석 알고리즘 제작',
+				body: '다양한 산업 분야에서 발생하는 방대한 양의 빅데이터를 효율적으로 수집하고 분석하기 위한 최적화된 알고리즘을 제작하여 공급하고 있어요. 고객의 요구사항과 데이터 특성을 고려한 맞춤형 알고리즘 개발로, 복잡한 데이터 속에서 숨겨진 패턴과 인사이트를 발견하고 의미 있는 결과를 도출해요.',
 			},
 			{
 				imgUrl: serviceImage2,
 				id: 1,
-				caption: '5010 퀀트 솔루션',
-				heading: '기술과 수학의 힘으로 전통적 투자의 한계를 넘어',
-				body: '데이터 과학과 인공지능 기술을 활용하여 금융시장의 복잡한 패턴을 분석하고, 최적의 매매 전략을 수립하고 실행하는 자동화 솔루션입니다.',
-				buttonText: '5010 퀀트 솔루션 자세히 보기 →',
+				caption: 'DATA VISUALISATION',
+				heading: '데이터 시각화 및 최적화 기술 공급',
+				body: '수집된 방대한 양의 데이터를 분석하여 그 안에 숨겨진 규칙성과 패턴을 찾아내고, 이를 바탕으로 미래 변동성을 예측하며 최적화된 결과를 제공하고 있어요. 또한 강력하고 직관적인 시각화 도구를 활용하여 복잡한 데이터를 쉽게 이해하고 해석할 수 있도록 지원해요.',
 			},
 			{
 				imgUrl: serviceImage3,
 				id: null,
-				caption: '1104 R&I 공식 커뮤니티',
-				heading: '투자는 단거리 경주가 아닌 끝없는 마라톤',
-				body: '여러분이 초심을 잃지 않고 나아갈 수 있도록, 잘못된 투자 방식 교정과 동기부여 지속 제공을 통해 페이스 페이커가 되어 여러분과 함께 합니다.',
-				buttonText: '커뮤니티 참여하기 →',
+				caption: 'MACHINE LEARNING',
+				heading: 'AI & 머신러닝으로 솔루션 고도화',
+				body: '최신 인공지능과 머신러닝 기술을 적용하여 지속적으로 학습하고 발전하는 정교하고 고도화된 데이터 분석 및 시각화 솔루션을 개발하고 있어요. 이 솔루션은 데이터의 패턴을 자동으로 인식하고 학습하여 시간이 지날수록 더욱 정확하고 신뢰성 높은 결과를 제공해요.',
 			},
 		],
 	},
@@ -297,8 +291,8 @@ export const useHomeContentsStore = create<HomeContentsState>((set) => ({
 		image: communityImage,
 		text: {
 			caption: 'JOIN 1104 R&I TODAY',
-			heading: '커뮤니티에 참여하고 최신 정보를 받아보세요.',
-			body: '아래 버튼을 클릭하시면 1104 R&I 공식 텔레그램 커뮤니티로 이동합니다.',
+			heading: 'START YOUR BUSINESS JOURNEY TODAY',
+			body: '금융 전문가와 수학자들이 설계한 최첨단 데이터 분석 및 시각화 솔루션과 함께 새로운 여정을 시작해 보세요.',
 		},
 		linkUrl: '',
 	},

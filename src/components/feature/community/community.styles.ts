@@ -77,6 +77,7 @@ export const CommunityContainer = styled(SectionContainer)<Props>`
 			flex-direction: column;
 			justify-content: flex-start;
 			align-items: center;
+			gap: 1rem;
 
 			z-index: 2;
 

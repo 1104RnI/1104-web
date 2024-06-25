@@ -71,7 +71,6 @@ export default function HomeHero() {
 					/>
 				</div>
 			</div>
-			<img id="mockup-image" src={image.mockupImage} alt={image.mockupImage} />
 		</HomeHeroContainer>
 	)
 }

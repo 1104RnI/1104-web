@@ -6,9 +6,9 @@ import { useScrollStore } from '../../../store/globalUiStore'
 import HomeHero from '../../../components/feature/home-hero/home-hero.component'
 import About from '../../../components/feature/about/about.component'
 import Service from '../../../components/feature/service/service.component'
-import Achievement from '../../../components/feature/achievement/achievement.component'
-import Result from '../../../components/feature/result/result.component'
-import Review from '../../../components/feature/review/review.component'
+// import Achievement from '../../../components/feature/achievement/achievement.component'
+// import Result from '../../../components/feature/result/result.component'
+// import Review from '../../../components/feature/review/review.component'
 import Subscription from '../../../components/feature/subscription/subscription.component'
 import FrequentQuestions from '../../../components/feature/frequent-questions/frequent-questions.component'
 import Community from '../../../components/feature/community/community.component'
@@ -39,11 +39,11 @@ export default function Home() {
 			<About />
 			<Service />
 			<div id="achievement-result-container">
-				<Achievement />
+				{/* <Achievement />
 				<Result />
-				<Review />
+				<Review /> */}
+				<Subscription ref={ref} />
 			</div>
-			<Subscription ref={ref} />
 			<FrequentQuestions />
 			<Community />
 		</HomeContainer>

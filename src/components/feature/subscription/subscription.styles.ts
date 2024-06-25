@@ -5,15 +5,27 @@ import { getTypography } from '../../../utils/typo.utils'
 
 import { SectionContainer } from '../../global/section/section.styles'
 
-import { SubscriptionContainerProps } from './subscription.types'
+export const SubscriptionContainer = styled(SectionContainer)`
+	/* overflow-x: visible; */
 
-type Props = SubscriptionContainerProps
+	padding: 0;
 
-export const SubscriptionContainer = styled(SectionContainer)<Props>`
-	overflow-x: visible;
+	margin-top: ${({ theme }) => theme.layout.page.gutter};
+	margin-bottom: ${({ theme }) => theme.layout.page.gutter};
 
-	padding: ${({ theme, $deviceType }) =>
-		`${getDeviceTypePadding(theme, $deviceType, 'section')} 0`};
+	div#subscription-section-contents-container {
+		width: ${({ theme }) => theme.layout.section.width};
+		max-width: ${({ theme }) => theme.layout.section.maxWidth};
+
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: ${({ theme }) => theme.layout.section.gutter};
+
+		padding: ${({ theme, $deviceType }) =>
+			getDeviceTypePadding(theme, $deviceType, 'section')};
+	}
 
 	div#section-heading-container {
 		width: ${({ theme }) => theme.layout.container.width};
@@ -28,33 +40,7 @@ export const SubscriptionContainer = styled(SectionContainer)<Props>`
 
 		h1#section-heading {
 			${({ theme }) => getTypography(theme, 'heading1')}
-			color: ${({ theme }) => theme.colour.neutral.secondary.active};
-		}
-	}
-
-	div#scrolling-container {
-		width: 100%;
-
-		overflow-x: auto;
-
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: ${({ $isScrolling }) =>
-			$isScrolling ? 'flex-start' : 'center'};
-
-		padding: ${({ theme, $deviceType }) =>
-			getDeviceTypePadding(theme, $deviceType, 'section')};
-
-		div#items-container {
-			width: auto;
-			display: flex;
-			flex-direction: row;
-			align-items: stretch;
-			gap: ${({ theme, $deviceType }) =>
-				$deviceType === 'mobile'
-					? theme.layout.container.gutter
-					: theme.layout.section.gutter};
+			color: ${({ theme }) => theme.colour.neutral.primary.active};
 		}
 	}
 `

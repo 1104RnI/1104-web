@@ -12,13 +12,15 @@ type Props = SubscriptionItemContainerProps
 export const SubscriptionItemContainer = styled.div<Props>`
 	position: relative;
 
-	width: ${({ theme, $deviceType }) =>
-		$deviceType === 'mobile' ? '18.5rem' : '20rem'};
+	/* width: ${({ theme, $deviceType }) =>
+		$deviceType === 'mobile' ? '18.5rem' : '20rem'}; */
+	width: ${({ theme }) => theme.layout.container.width};
 
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	justify-content: space-between;
-	align-items: center;
+	align-items: stretch;
+	gap: ${({ theme }) => theme.layout.section.gutter};
 
 	flex: 1 0 auto;
 
@@ -48,21 +50,32 @@ export const SubscriptionItemContainer = styled.div<Props>`
 		$hierarchy === 'primary' &&
 		css`
 			-webkit-filter: drop-shadow(
-				0 0 0.5rem
-					${hexToRgba(getColour(theme, 'neutral', 'secondary', 'active'), 0.5)}
+				0 2rem 2rem
+					${hexToRgba(getColour(theme, 'neutral', 'primary', 'active'), 0.25)}
 			);
 			filter: drop-shadow(
-				0 0 0.5rem
-					${hexToRgba(getColour(theme, 'neutral', 'secondary', 'active'), 0.5)}
+				0 2rem 2rem
+					${hexToRgba(getColour(theme, 'neutral', 'primary', 'active'), 0.25)}
 			);
 		`}
 
+  div#item-image {
+		width: 100%;
+		border-radius: ${({ theme }) => theme.shape.filled.rounded2.borderRadii};
+
+		background-image: url(${({ $imageUrl }) => $imageUrl});
+		background-position: center;
+		background-size: cover;
+		background-repeat: no-repeat;
+	}
+
 	div#item-contents-container {
 		width: ${({ theme }) => theme.layout.component.width};
+		max-width: 26rem;
 
 		display: flex;
 		flex-direction: column;
-		justify-content: flex-start;
+		justify-content: space-between;
 		align-items: center;
 		gap: ${({ theme }) => theme.layout.container.gutter};
 
@@ -74,10 +87,7 @@ export const SubscriptionItemContainer = styled.div<Props>`
 			align-items: center;
 			gap: 0.5rem;
 
-			padding: ${({ theme, $deviceType }) =>
-				$deviceType === 'mobile'
-					? theme.layout.component.padding.sm
-					: theme.layout.component.padding.default};
+			padding: ${({ theme }) => theme.layout.component.padding.sm};
 
 			${({ theme, $hierarchy }) =>
 				$hierarchy === 'primary'
@@ -195,8 +205,7 @@ export const SubscriptionItemContainer = styled.div<Props>`
 				align-items: center;
 				gap: ${({ theme }) => theme.layout.component.gutter};
 
-				padding: ${({ theme }) =>
-					`${theme.layout.component.padding.lg} ${theme.layout.component.padding.default}`};
+				padding: ${({ theme }) => theme.layout.container.padding.default};
 
 				${({ theme, $hierarchy }) =>
 					getContainerStyle(

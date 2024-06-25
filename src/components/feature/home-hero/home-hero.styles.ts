@@ -15,11 +15,11 @@ export const HomeHeroContainer = styled(SectionContainer)<Props>`
 
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-end;
+	justify-content: center;
 	align-items: center;
 
-	padding-bottom: 0;
-	padding-top: ${({ $isBannerOn }) => ($isBannerOn ? '12rem' : '8rem')};
+	padding-top: 8rem;
+	padding-bottom: 6rem;
 
 	background-image: url(${(props) => props.$imageUrl});
 	background-size: cover;
@@ -35,7 +35,7 @@ export const HomeHeroContainer = styled(SectionContainer)<Props>`
 		left: 0;
 		right: 0;
 		bottom: 0;
-		background-color: rgba(0, 0, 0, 0.15);
+		background-color: rgba(0, 0, 0, 0.25);
 
 		z-index: 1;
 	}
@@ -72,11 +72,15 @@ export const HomeHeroContainer = styled(SectionContainer)<Props>`
 
 		h1#display {
 			${({ theme }) => getTypography(theme, 'display')}
+			font-size: ${({ $deviceType }) =>
+				$deviceType !== 'mobile' ? '8rem' : '4rem'};
 			color: ${({ theme }) =>
 				getColour(theme, 'neutral', 'secondary', 'active')};
 		}
 
 		h2#subheading {
+			width: 80%;
+			max-width: 30rem;
 			${({ theme }) => getTypography(theme, 'subheading')}
 			color: ${({ theme }) =>
 				getColour(theme, 'neutral', 'secondary', 'active')};

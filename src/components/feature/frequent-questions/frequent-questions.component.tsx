@@ -13,7 +13,7 @@ export default function FrequentQuestions() {
 	const faq = useFaqDataStore((state) => state.faq)
 
 	const handleGetHelp = (e: MouseEvent<HTMLSpanElement>) => {
-		const subject = '5010 매매 전략 관련 문의사항'
+		const subject = '데이터 솔루션 관련 문의사항'
 		const recipient = '5010.cs.kr@5010.tech'
 		const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(
 			subject,
