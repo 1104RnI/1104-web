@@ -10,9 +10,9 @@ export default function MySubscription() {
 	return (
 		<MySubscriptionContainer $deviceType={deviceType}>
 			<div className="container-row">
-				<h2 className="heading-2">구독중인 서비스</h2>
+				<h2 className="heading-2">이용중인 서비스</h2>
 				<div className="item-row">
-					<p className="body">구독중인 서비스가 없습니다.</p>
+					<p className="body">이용중인 서비스가 없습니다.</p>
 				</div>
 			</div>
 			<hr />
@@ -20,12 +20,12 @@ export default function MySubscription() {
 				<h2 className="heading-2">결제 내역</h2>
 				<BillingItem
 					date="2024-05-08 09:00"
-					service="5010 매매전략 | DELUX"
+					service="데이터 분석 및 시각화 솔루션 | RENAISSANCE"
 					price={1250000}
 				/>
 				<BillingItem
 					date="2024-05-08 09:00"
-					service="5010 매매전략 | DELUX"
+					service="데이터 분석 및 시각화 솔루션 | RENAISSANCE"
 					price={1250000}
 				/>
 			</div>

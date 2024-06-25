@@ -4,7 +4,7 @@ import { MyAccountProps } from './my-account.types'
 import { MyAccountContainer } from './my-account.styles'
 
 import Button from '../../global/button/button.component'
-import ConnectedAccount from './conneted-account/connected-account.component'
+// import ConnectedAccount from './conneted-account/connected-account.component'
 
 export default function MyAccount(props: MyAccountProps) {
 	const { userId } = props
@@ -28,12 +28,12 @@ export default function MyAccount(props: MyAccountProps) {
 					/>
 				</div>
 			</div>
-			<hr />
+			{/* <hr />
 			<div className="container-row">
 				<h2 className="heading-2">연결된 계정</h2>
 				<ConnectedAccount accountType="tradingview" />
 				<ConnectedAccount accountType="discord" />
-			</div>
+			</div> */}
 		</MyAccountContainer>
 	)
 }

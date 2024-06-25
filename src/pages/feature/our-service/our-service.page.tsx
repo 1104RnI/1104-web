@@ -92,7 +92,7 @@ export default function OurService() {
 				<div className="our-service-contents-row">
 					<div id="our-service-subscribe-service-container">
 						<h3 id="our-service-subscribe-service-heading">
-							{subscribeService.heading}
+							{subscribeService.heading.toUpperCase()}
 						</h3>
 						<p id="our-service-subscribe-service-body">
 							{subscribeService.body}

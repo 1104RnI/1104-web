@@ -57,7 +57,7 @@ export const useOurServiceContentsStore = create<OurServiceContentsState>(
 				image: quantImage,
 				id: 1,
 				heading: '르네상스 | 데이터 분석 및 시각화 솔루션',
-				subheading: '전통적 투자의 한계를 넘어',
+				subheading: '맞춤형 통합 데이터 솔루션',
 				features: ['빅데이터 수집 및 분석', '데이터 시각화', '머신러닝 고도화'],
 				body: [
 					'AI 기반 데이터 분석 솔루션은 최첨단 머신러닝 기술을 활용하여 복잡한 빅데이터 패턴을 심층 분석하고, 이를 직관적으로 시각화하여 제공하는 맞춤형 통합 솔루션입니다. 지속적으로 자가 학습하며 고도화되는 알고리즘을 통해, 데이터 분석과 시각화를 무기로 최적의 전략을 수립합니다.',
@@ -68,7 +68,7 @@ export const useOurServiceContentsStore = create<OurServiceContentsState>(
 		],
 		subscribeService: {
 			image: bannerBackgroundImage,
-			heading: 'Start your investing journey today',
+			heading: 'Start your business journey today',
 			subheading: 'with 1104 R&I',
 			body: '금융 전문가와 수학자들이 설계한 최첨단 데이터 분석 및 시각화 솔루션과 함께 새로운 여정을 시작해 보세요.',
 		},
