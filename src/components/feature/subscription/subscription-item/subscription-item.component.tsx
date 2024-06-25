@@ -1,4 +1,5 @@
 import { MouseEvent } from 'react'
+import { ROUTES } from '../../../../routes/routes'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
@@ -17,7 +18,7 @@ import Button from '../../../global/button/button.component'
 
 export default function SubscriptionItem(props: SubscriptionItemProps) {
 	const { item, hierarchy } = props
-	const { plan, id, name, tag, summary, features, price, priceCaption } = item
+	const { plan, id, name, tag, summary, overview, price, priceCaption } = item
 
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { userId } = useAuthDataStore((state) => state.loginUser)
@@ -35,17 +36,17 @@ export default function SubscriptionItem(props: SubscriptionItemProps) {
 			)
 		} else {
 			if (userId) {
+				// TODO: updateCheckoutItem 유지할 필요 있는지 체크 필요
 				updateCheckoutItem('id', id)
-				navigate(`/checkout?id=${id}&name=${name}&plan=${plan}`)
+				navigate(`${ROUTES.CHECKOUT}?id=${id}&name=${name}&plan=${plan}`)
 			} else {
-				navigate('/login', { routeState: 'signup' })
+				navigate(ROUTES.LOGIN, { routeState: 'signup' })
 				updateToastMessage('회원가입 및 로그인이 필요합니다.')
 			}
 		}
 	}
-	const handleTryFree = (e: MouseEvent<HTMLButtonElement>) => {
-		// TODO: 체험판 신청 페이지로 navigate
-	}
+	const handleTryFree = (e: MouseEvent<HTMLButtonElement>) =>
+		navigate(ROUTES.FREE_TRIAL)
 
 	return (
 		<SubscriptionItemContainer $deviceType={deviceType} $hierarchy={hierarchy}>
@@ -81,7 +82,7 @@ export default function SubscriptionItem(props: SubscriptionItemProps) {
 				<div id="description-text-container">
 					<p id="body">{summary}</p>
 					<div id="features-text-container">
-						{features.map((item, index) => (
+						{overview.map((item, index) => (
 							<div key={index} className="feature-text">
 								<FontAwesomeIcon
 									icon={faCircleCheck}
@@ -101,13 +102,12 @@ export default function SubscriptionItem(props: SubscriptionItemProps) {
 					appearance={hierarchy === 'primary' ? 'accent' : 'neutral'}
 					hierarchy={hierarchy}
 					stroke={hierarchy === 'primary' ? 'filled' : 'outlined'}
+					// stroke="filled"
 					shape="rounding"
 					handleClick={price !== 0 ? handleSubscribe : handleTryFree}
 				/>
 				<span id="caption">
-					{price !== 0
-						? '구매 후 30일 이내 환불 가능'
-						: '1:1 무료 상담 후 제공'}
+					{price !== 0 ? '구매 후 7일 이내 환불 가능' : '1:1 무료 상담 후 제공'}
 				</span>
 			</div>
 		</SubscriptionItemContainer>

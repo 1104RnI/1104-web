@@ -1,8 +1,11 @@
 import { MouseEvent } from 'react'
+import { useLocation } from 'react-router-dom'
+import { ROUTES } from '../../../routes/routes'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 
 import { useOurServiceContentsStore } from '../../../store/contents/ourServiceContentsStore'
+import { useScrollStore } from '../../../store/globalUiStore'
 import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
 import { OurServiceContainer } from './our-service.styles'
@@ -15,19 +18,40 @@ export default function OurService() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { image, text } = useOurServiceContentsStore((state) => state.hero)
 	const serviceList = useOurServiceContentsStore((state) => state.serviceList)
-	const freeTrial = useOurServiceContentsStore((state) => state.freeTrial)
+	const subscribeService = useOurServiceContentsStore(
+		(state) => state.subscribeService,
+	)
+	const location = useLocation()
 	const navigate = useNavigateWithScroll()
+	const updateScrollState = useScrollStore((state) => state.updateScrollState)
 
 	const handleFreeTrial = (e: MouseEvent<HTMLButtonElement>) =>
-		navigate('/free-trial')
+		navigate(ROUTES.FREE_TRIAL)
 
-	const handleNavigate = (e: MouseEvent<HTMLButtonElement>, pathName: string) =>
-		navigate(pathName)
+	const handleUseService = (e: MouseEvent<HTMLButtonElement>) => {
+		navigate(ROUTES.HOME)
+		location.pathname === ROUTES.HOME
+			? updateScrollState('isSamePage', true)
+			: updateScrollState('isSamePage', false)
+		updateScrollState('isScrollToSubscription', true)
+	}
 
-	const pathNameList = ['/5010-trading', 'quant']
+	const handleNavigate = (e: MouseEvent<HTMLButtonElement>, itemId: number) => {
+		// HACK: 5010 매매 전략 D2C 판매 준비 전까지
+		if (itemId === 0) {
+			window.open(
+				'https://kmong.com/gig/455172',
+				'_blank',
+				'noopener,noreferrer',
+			)
+		} else navigate(`${ROUTES.SERVICE_ITEM.createPath(itemId)}`)
+	}
 
 	return (
-		<OurServiceContainer $deviceType={deviceType} $imageUrl={freeTrial.image}>
+		<OurServiceContainer
+			$deviceType={deviceType}
+			$imageUrl={subscribeService.image}
+		>
 			<Hero
 				id="our-service-hero"
 				image={image}
@@ -58,24 +82,30 @@ export default function OurService() {
 							heading={item.heading}
 							subheading={item.subheading}
 							body={item.body}
+							freeTrial={item.freeTrial}
 							features={item.features}
-							handleSeeDetails={(e) => handleNavigate(e, pathNameList[index])}
+							handleSeeDetails={(e) => handleNavigate(e, item.id)}
+							handleFreeTrial={handleFreeTrial}
 						/>
 					))}
 				</div>
 				<div className="our-service-contents-row">
-					<div id="our-service-free-trial-container">
-						<h3 id="our-service-free-trial-heading">{freeTrial.heading}</h3>
-						<p id="our-service-free-trial-body">{freeTrial.body}</p>
+					<div id="our-service-subscribe-service-container">
+						<h3 id="our-service-subscribe-service-heading">
+							{subscribeService.heading}
+						</h3>
+						<p id="our-service-subscribe-service-body">
+							{subscribeService.body}
+						</p>
 						<Button
-							id="our-service-free-trial-button"
-							accessibleName="our-service-free-trial-container"
-							appearance="neutral"
-							hierarchy="secondary"
+							id="our-service-subscribe-service-button"
+							accessibleName="our-service-subscribe-service-container"
+							appearance="accent"
+							hierarchy="primary"
 							stroke="filled"
 							shape="rounding"
-							text="1:1 무료 상담받고 체험하기"
-							handleClick={handleFreeTrial}
+							text="서비스 이용하기"
+							handleClick={handleUseService}
 						/>
 					</div>
 				</div>

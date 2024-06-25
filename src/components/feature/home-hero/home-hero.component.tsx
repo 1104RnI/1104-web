@@ -1,8 +1,12 @@
 import { MouseEvent } from 'react'
+import { useLocation } from 'react-router-dom'
+import { ROUTES } from '../../../routes/routes'
 
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useHomeContentsStore } from '../../../store/contents/homeContentsStore'
+import { useScrollStore } from '../../../store/globalUiStore'
 import usePointerCoarseAndSafari from '../../../hooks/usePointerCoarseAndSafari'
+import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 // import { useBannerStore } from '../../../store/globalUiStore'
 
 import { HomeHeroContainer } from './home-hero.styles'
@@ -15,10 +19,21 @@ export default function HomeHero() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { image, text } = useHomeContentsStore((state) => state.home)
 	const isPointerCoarseAndSafari = usePointerCoarseAndSafari()
+	const navigate = useNavigateWithScroll()
+	const location = useLocation()
+	const updateScrollState = useScrollStore((state) => state.updateScrollState)
 	// const isBannerOn = useBannerStore((state) => state.isBannerOn)
 
-	const handleButtonClick = (e: MouseEvent<HTMLButtonElement>) => {}
-	const handleTextLinkClick = (e: MouseEvent<HTMLDivElement>) => {}
+	const handleUseService = (e: MouseEvent<HTMLButtonElement>) => {
+		navigate(ROUTES.HOME)
+		location.pathname === ROUTES.HOME
+			? updateScrollState('isSamePage', true)
+			: updateScrollState('isSamePage', false)
+		updateScrollState('isScrollToSubscription', true)
+	}
+
+	const handleFreeTrial = (e: MouseEvent<HTMLSpanElement>) =>
+		navigate(ROUTES.FREE_TRIAL)
 
 	return (
 		<HomeHeroContainer
@@ -43,16 +58,16 @@ export default function HomeHero() {
 						shape="rounding"
 						size="md"
 						text={text.ctaButtonText}
-						handleClick={handleButtonClick}
+						handleClick={handleUseService}
 					/>
 					<TextLink
 						appearance="neutral"
 						hierarchy="secondary"
 						size="sm"
 						icon={<Icon id="link-icon" />}
-						text="1:1 무료 상담받고 할인코드 받아가세요!"
+						text={text.linkText}
 						underlined
-						handleClick={handleTextLinkClick}
+						handleClick={handleFreeTrial}
 					/>
 				</div>
 			</div>

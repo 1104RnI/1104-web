@@ -2,7 +2,7 @@ import { create } from 'zustand'
 
 import backgroundImage from '../../assets/img/home-about-image.webp'
 import educationImage from '../../assets/img/service-image-1.webp'
-import quantImage from '../../assets/img/service-quant-image.webp'
+import quantImage from '../../assets/img/service-image-2.webp'
 import bannerBackgroundImage from '../../assets/img/banner-background-img.webp'
 
 type Hero = {
@@ -17,22 +17,25 @@ type Hero = {
 
 type Service = {
 	image: string
+	id: number
 	heading: string
 	subheading: string
 	features: string[]
 	body: string[]
+	freeTrial: boolean
 }
 
-type FreeTrial = {
+type SubscribeService = {
 	image: string
 	heading: string
+	subheading: string
 	body: string
 }
 
 export interface OurServiceContentsState {
 	hero: Hero
 	serviceList: Service[]
-	freeTrial: FreeTrial
+	subscribeService: SubscribeService
 }
 
 export const useOurServiceContentsStore = create<OurServiceContentsState>(
@@ -52,6 +55,7 @@ export const useOurServiceContentsStore = create<OurServiceContentsState>(
 		serviceList: [
 			{
 				image: educationImage,
+				id: 0,
 				heading: '5010 매매 전략',
 				subheading: '쉽고 명확하며 과학적인 투자의 길',
 				features: ['전자책', 'VOD', '인디케이터'],
@@ -59,22 +63,26 @@ export const useOurServiceContentsStore = create<OurServiceContentsState>(
 					'5010 매매 전략은 투자 시장의 모든 것을 아우르는 종합적인 투자 교육 프로그램입니다. 단순한 기법이 아닌 전략으로서의 접근을 통해, 투자자들은 시장을 보다 깊이 이해하고 체계적으로 대응할 수 있게 됩니다.',
 					'1104 R&I의 전문가들이 제공하는 통찰력과 실용적인 가이드는 투자자들이 자신만의 투자 철학을 확립하고 성공적인 투자를 실현하는 데 든든한 토대가 될 것입니다.',
 				],
+				freeTrial: true,
 			},
 			{
 				image: quantImage,
-				heading: '퀀트 솔루션',
+				id: 1,
+				heading: '르네상스 퀀트 솔루션',
 				subheading: '전통적 투자의 한계를 넘어',
 				features: ['인디케이터', '자동 매매', '백테스팅 전략'],
 				body: [
-					'퀀트 솔루션은 데이터 과학과 인공지능 기술을 활용하여 금융시장의 복잡한 패턴을 분석하고, 최적의 매매 전략을 수립하고 실행하는 자동화 솔루션입니다. 전통적인 투자 방식으로는 포착하기 어려운 시장의 미세한 변화와 기회를 포착하여, 투자자들에게 새로운 차원의 수익 창출 가능성을 제시합니다.',
+					'르네상스 퀀트 솔루션은 데이터 과학과 인공지능 기술을 활용하여 금융시장의 복잡한 패턴을 분석하고, 최적의 매매 전략을 수립하고 실행하는 자동화 솔루션입니다. 전통적인 투자 방식으로는 포착하기 어려운 시장의 미세한 변화와 기회를 포착하여, 투자자들에게 새로운 차원의 수익 창출 가능성을 제시합니다.',
 					'1104 R&I의 퀀트 솔루션은 투자자들이 시장의 불확실성을 극복하고 안정적인 수익을 추구할 수 있도록 돕습니다.',
 				],
+				freeTrial: false,
 			},
 		],
-		freeTrial: {
+		subscribeService: {
 			image: bannerBackgroundImage,
-			heading: '고민되신 다면, 무료로 먼저 체험해 보세요.',
-			body: '1104 R&I는 모든 서비스에 대해 어떤 조건도 없이 사용할 수 있는 3일의 무료 체험 기간을 제공하고 있어요.',
+			heading: 'Start your investing journey today',
+			subheading: 'with 1104 R&I',
+			body: '금융 전문가와 수학자들이 설계한 최첨단 기술과 함께 새로운 투자 여정을 시작해 보세요.',
 		},
 	}),
 )
