@@ -1,14 +1,24 @@
+import { MouseEvent } from 'react'
+import { ROUTES } from '../../../routes/routes'
+
 import { useDeviceTypeStore } from '../../../store/deviceTypeStore'
 import { useHomeContentsStore } from '../../../store/contents/homeContentsStore'
+import useNavigateWithScroll from '../../../hooks/useNavigateWithScroll'
 
 import { ServiceContainer } from './service.styles'
+
+import Button from '../../global/button/button.component'
 
 export default function Service() {
 	const deviceType = useDeviceTypeStore((state) => state.deviceType)
 	const { items } = useHomeContentsStore((state) => state.service)
+	const navigate = useNavigateWithScroll()
+
+	const handleSeeDetails = (e: MouseEvent<HTMLButtonElement>) =>
+		navigate(`${ROUTES.SERVICE_ITEM.createPath(1)}`)
 
 	return (
-		<ServiceContainer $deviceType={deviceType}>
+		<ServiceContainer $deviceType={deviceType} id="service-list-container">
 			{items.map((item, index) => (
 				<div key={index} className="item-container">
 					<div className="image-container">
@@ -25,6 +35,15 @@ export default function Service() {
 					</div>
 				</div>
 			))}
+			<Button
+				accessibleName="service-list-container"
+				appearance="neutral"
+				hierarchy="secondary"
+				stroke="outlined"
+				shape="rounding"
+				text="서비스 자세히 보기"
+				handleClick={handleSeeDetails}
+			/>
 		</ServiceContainer>
 	)
 }
