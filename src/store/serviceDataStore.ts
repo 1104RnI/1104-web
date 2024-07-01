@@ -51,7 +51,6 @@ const servieNotes: string[] = [
 	'인디케이터 및 자동화 서비스는 결제일로부터 31일간 사용 가능합니다.',
 	'결제 후, 서비스 초기 셋팅을 위해 5010.cs.kr@5010.tech 이메일을 통해 결제자 이메일로 업무일 기준 24시간 이내 연락을 드립니다.',
 	'사용 기간 종료 이후에는 재구매를 통해 서비스를 계속해서 이용할 수 있습니다.',
-	'첫 구매 이후 재구매 시에는 초기 설치 비용을 제외한 비용만 청구됩니다.',
 ]
 
 const serviceInfo: string[] = [
@@ -75,7 +74,7 @@ export type Service = {
 	features: string[]
 	overview: string[]
 	price: number
-	priceCaption: string
+	priceCaption?: string
 	details?: string[]
 	notes?: string[]
 	serviceInfo?: string[]
@@ -121,7 +120,7 @@ export const useServiceDataStore = create<ServiceDataState>((set) => ({
 				'24시간 어드바이저 서포트',
 			],
 			price: 7500000,
-			priceCaption: '최초 결제 비용 | 이후 ₩50,000',
+			// priceCaption: '최초 결제 비용 | 이후 ₩50,000',
 			details: quantDetails,
 			notes: servieNotes,
 			serviceInfo: serviceInfo,
